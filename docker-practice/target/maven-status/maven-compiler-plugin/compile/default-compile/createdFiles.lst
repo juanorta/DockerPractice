@@ -1,0 +1,4 @@
+com/juanorta/dockerpractice/model/User.class
+com/juanorta/dockerpractice/controllers/UserController.class
+com/juanorta/dockerpractice/repository/UserRepository.class
+com/juanorta/dockerpractice/DockerPracticeApplication.class

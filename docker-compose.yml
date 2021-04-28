@@ -1,0 +1,22 @@
+version: "3"
+services:
+  frontend:
+    container_name: docker-practice-js
+    build:
+      context: ./docker-practice-js
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /etc/letsencrypt/archive/mypetfamily.io/:/etc/letsencrypt/archive/mypetfamily.io/
+      - /etc/letsencrypt/live/mypetfamily.io/:/etc/letsencrypt/live/mypetfamily.io/
+
+  backend:
+    restart: always
+    container_name: docker-practice
+    build: ./docker-practice
+    expose:
+      - 8080
+    volumes:
+      - ./backend:/usr/src/app

@@ -1,20 +1,50 @@
-import logo from './logo.svg';
+import { React, useState, useEffect } from 'react';
 import './App.css';
+import { API_BASE_URL } from './constants';
 
 function App() {
+	const [name, setName] = useState(null);
+	const [email, setEmail] = useState(null);
+	const [users, setUsers] = useState(null);
+	const [loading, setLoading] = useState(true);
+
+	const getData = () => {
+		fetch(API_BASE_URL + '/users')
+			.then((response) => response.json())
+			.then((data) => setUsers(data));
+
+		setLoading(false);
+	};
+
+	console.log(users);
+	console.log(loading);
+
 	return (
 		<div className="App">
 			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>Docker practice</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
+				<h1>Users: </h1>
+
+				{loading === false && users != null ? (
+					<div>
+						{users.map((user) => (
+							<div>
+								<h3>{user.name}</h3>
+								<h3>{user.email}</h3>
+							</div>
+						))}
+					</div>
+				) : null}
+
+				<button
+					style={{
+						height: '3rem',
+						width: '8rem',
+						cursor: 'pointer',
+					}}
+					onClick={getData}
 				>
-					Learn React
-				</a>
+					Get Data
+				</button>
 			</header>
 		</div>
 	);
