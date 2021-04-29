@@ -1,1 +1,1 @@
-export const API_BASE_URL = 'http://backend:8080/api';
+export const API_BASE_URL = '/api/users';
